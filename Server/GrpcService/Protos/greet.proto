@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GrpcService";
+
+package greet;
+
+service MessageServiceApi {
+  rpc Send (Message) returns (google.protobuf.Empty);
+  rpc Subscribe(google.protobuf.Empty) returns (stream Message) {}
+}
+
+message Message {
+	string content = 1;
+	google.protobuf.Timestamp at = 2;
+}
